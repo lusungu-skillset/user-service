@@ -1,3 +1,10 @@
+import * as nodeCrypto from 'crypto';
+
+
+if (!(global as any).crypto) {
+  (global as any).crypto = nodeCrypto;
+}
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
@@ -11,4 +18,5 @@ async function bootstrap() {
   await app.listen();
   console.log('User Service running 🚀');
 }
+
 bootstrap();
