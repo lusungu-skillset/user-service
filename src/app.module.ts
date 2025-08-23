@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserController } from './app.controller';
 import { User } from './entities/user.entity';
+import { UserService } from './app.service';
 
 
 @Module({
@@ -22,12 +23,14 @@ import { User } from './entities/user.entity';
         password: config.get<string>('DB_PASS'),
         database: config.get<string>('DB_NAME'),
         entities: [User],
-        synchronize: true, // ⚠️ turn off in production, use migrations
+        synchronize: true, // ⚠️ disable in production
       }),
     }),
 
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [UserController],
+  providers: [UserService], 
+  exports: [UserService],   
 })
 export class AppModule {}
