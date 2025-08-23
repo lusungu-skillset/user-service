@@ -1,21 +1,21 @@
-# Use official Node image
 FROM node:18-alpine
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Install build tools and crypto dependencies
+RUN apk add --no-cache bash git openssl
+
+# Copy package files first
 COPY package*.json ./
-RUN npm install
+
+# Install dependencies
+RUN npm install --production
 
 # Copy source code
 COPY . .
 
-# Build the app
+# Build TypeScript
 RUN npm run build
 
-# Expose the default port (adjust if needed)
-EXPOSE 3000
-
-# Command to run the app
-CMD ["npm", "run", "start:prod"]
+# Start app
+CMD ["node", "dist/main"]
