@@ -9,7 +9,7 @@ import { UserService } from './app.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // makes env variables available everywhere
+      isGlobal: true, 
     }),
 
     TypeOrmModule.forRootAsync({
@@ -23,7 +23,7 @@ import { UserService } from './app.service';
         password: config.get<string>('DB_PASS'),
         database: config.get<string>('DB_NAME'),
         entities: [User],
-        synchronize: true, // ⚠️ disable in production
+        synchronize: true, 
       }),
     }),
 
