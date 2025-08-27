@@ -14,7 +14,6 @@ async function bootstrap() {
     transport: Transport.REDIS,
     options: { host: 'redis', port: 6379 },
   });
-
   await app.listen();
   console.log('User Service running 🚀');
 }
