@@ -21,7 +21,7 @@ import { UserService } from './app.service';
         port: config.get<number>('DB_PORT'),
         username: config.get<string>('DB_USERNAME'),
         password: config.get<string>('DB_PASSWORD'),
-        database: config.get<string>('DB_NAME'),
+        database: config.get<string>('DB_NAME_USERS'),
         entities: [User],
         synchronize: true, 
       }),
